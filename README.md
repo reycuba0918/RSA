@@ -18,3 +18,20 @@ The presented project highlights the creation and execution of the RSA encryptio
 
 ## max_ascii_character
 `max_ascii_character` is an optional parameter present in and `encrypt()` and `decrypt()` that allows users to change the highest ASCII character that is used in message that being encrypted or decrypted.
+
+## Example of the RSA class being used
+```
+from RSA import *
+
+rsa = RSA()
+
+encrypted_message = RSA.encrypt("The quick brown fox jumps over the lazy dog.", rsa.public_key)
+
+decrypted_message = RSA.decrypt(encrypted_message, rsa.private_key)
+
+print(decrypted_message)
+```
+### Output
+```
+The quick brown fox jumps over the lazy dog.
+```
