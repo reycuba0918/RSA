@@ -2,7 +2,7 @@
 The presented project highlights the creation and execution of the RSA encryption algorithm through a Python class. It effectively encapsulates RSA operations in a well-designed Python class structure, focusing on user-friendliness.
 
 ## RSA()
-`RSA()` creates a instance of the class RSA with variables `private_key` and `public_key`
+`RSA()` creates an instance of the class RSA with variables `private_key` and `public_key`
 
 ## public_key
 `public_key` is a variable of type `public_key`. It's the encryption key for the `private_key` that was created by the same `RSA()` instance.
@@ -17,4 +17,4 @@ The presented project highlights the creation and execution of the RSA encryptio
 `decrypt()` is static method that takes variables `encrypted_message` of type `int` and `private_key` of type `private_key`, in order return `encrypted_message` decrypted as tpye `str`.
 
 ## max_ascii_character
-`max_ascii_character` is an optinal parameter present in and `encrypt()` and `decrypt()` that allows users to change the highest ASCII character that could be used for the methods `encrypt()` and `decrypt()`.
+`max_ascii_character` is an optional parameter present in and `encrypt()` and `decrypt()` that allows users to change the highest ASCII character that is used in message that being encrypted or decrypted.
