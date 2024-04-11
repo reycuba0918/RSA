@@ -1,7 +1,7 @@
 from random import getrandbits
 from sympy import isprime
 from sympy import gcd
-from RSA_util import *
+from RSA_Util import *
 
 class RSA:
 
