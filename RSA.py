@@ -1,5 +1,3 @@
-from random import getrandbits
-from sympy import isprime
 from sympy import gcd
 from RSA_Util import *
 

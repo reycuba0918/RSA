@@ -1,3 +1,6 @@
+from random import getrandbits
+from sympy import isprime
+
 class public_key:
     def __init__(self, n: int, e: int):
         self.n = n
