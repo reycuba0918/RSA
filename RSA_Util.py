@@ -18,3 +18,9 @@ def fme(base: int, exponent: int, mod: int):
             x = (x * power) % mod
         power = (power * power) % mod
     return x
+    
+def generate_large_prime(bits):
+    while True:
+        prime_candidate = getrandbits(bits)
+        if isprime(prime_candidate):
+            return prime_candidate
