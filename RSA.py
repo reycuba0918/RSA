@@ -1,34 +1,40 @@
-import random
-from sympy import *
-
+from random import getrandbits
+from sympy import isprime
+from sympy import gcd
+from RSA_util import *
 
 class RSA:
-    def __init__(self, e, bit_count=512):
 
-        self.e = e
+    max_ascii_character = 128
+
+    def __init__(self): 
+
+        e = 1001 # e needs to be odd
+        bit_count:int=512
 
         def generate_large_prime(bits):
             while True:
-                prime_candidate = random.getrandbits(bits)
+                prime_candidate = getrandbits(bits)
                 if isprime(prime_candidate):
                     return prime_candidate
 
         while True:
-            self.p = generate_large_prime(bit_count)
-            self.q = generate_large_prime(bit_count)
-            self.m = (self.p - 1) * (self.q - 1)
-            if gcd(self.m, self.e) == 1:
+            p = generate_large_prime(bit_count)
+            q = generate_large_prime(bit_count)
+            m = (p - 1) * (q - 1)
+            pop = gcd(m, e)
+            if pop == 1:
                 break
 
-        self.n = self.p * self.q
+        n = p * q
 
-        self.d = pow(e, -1, self.m)
+        d = pow(e, -1, m)
 
-        self.public_key = (self.n, self.e)
-        self.private_key = (self.n, self.d)
+        self.public_key = public_key(n, e)
+        self.private_key = private_key(n, d)
 
     @staticmethod
-    def encrypt(text, n, e, max_ascii_character=128):
+    def encrypt(text: str, public_key: public_key, max_ascii_character = 128):
 
         max_ascii_character = len(bin(max_ascii_character)) - 2
 
@@ -42,35 +48,14 @@ class RSA:
             message_bin += element
         message_bin = int(message_bin, 2)
 
-        def fme(base, exponent, mod):
-            x = 1
-            power = base % mod
-            exponent = bin(exponent)
-            o = len(exponent)
-            for r in range(o - 1, 1, -1):
-                if int(exponent[r]) == 1:
-                    x = (x * power) % mod
-                power = (power * power) % mod
-            return x
-        return fme(message_bin, e, n)
+        return fme(message_bin, public_key.e, public_key.n)
 
     @staticmethod
-    def decrypt(encrypt_message, n, d, max_ascii_character=128):
+    def decrypt(encrypted_message: int, private_key: private_key, max_ascii_character = 128):
 
         max_ascii_character = len(bin(max_ascii_character)) - 2
 
-        def fme(base, exponent, mod):
-            x = 1
-            power = base % mod
-            exponent = bin(exponent)
-            o = len(exponent)
-            for r in range(o - 1, 1, -1):
-                if int(exponent[r]) == 1:
-                    x = (x * power) % mod
-                power = (power * power) % mod
-            return x
-
-        decrypt_message_num = fme(encrypt_message, d, n)
+        decrypt_message_num = fme(encrypted_message, private_key.d, private_key.n)
         decrypt_message_bin = bin(decrypt_message_num).replace("0b", "")
         while len(decrypt_message_bin) % max_ascii_character != 0:
             decrypt_message_bin = "0" + decrypt_message_bin
