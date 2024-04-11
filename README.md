@@ -29,9 +29,14 @@ encrypted_message = RSA.encrypt("The quick brown fox jumps over the lazy dog.", 
 
 decrypted_message = RSA.decrypt(encrypted_message, rsa.private_key)
 
-print(decrypted_message)
+print("Encrypted_message:", encrypted_message)
+print()
+print("decrypted_message:", decrypted_message)
 ```
 ### Output
 ```
-The quick brown fox jumps over the lazy dog.
+Encrypted_message: 54627992755237788124878797434886663646060165265974648366009157378922788991212314091224940830687047439418950954412940583014435692221097983748662424312869461471177576317064245867567178523768579860116324157673674422736662441710481890765514804614118498977843799808833989209716357913633740252232135282873226889649
+
+decrypted_message: The quick brown fox jumps over the lazy dog.
 ```
+**Note that `encrypted_message` will always be a random number.
