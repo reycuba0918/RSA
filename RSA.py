@@ -12,12 +12,6 @@ class RSA:
         e = 1001 # e needs to be odd
         bit_count:int=512
 
-        def generate_large_prime(bits):
-            while True:
-                prime_candidate = getrandbits(bits)
-                if isprime(prime_candidate):
-                    return prime_candidate
-
         while True:
             p = generate_large_prime(bit_count)
             q = generate_large_prime(bit_count)
