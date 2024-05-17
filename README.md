@@ -17,7 +17,7 @@ The presented project highlights the creation and execution of the RSA encryptio
 `decrypt()` is static method that takes variables `encrypted_message` of type `int` and `private_key` of type `private_key`, in order return `encrypted_message` decrypted as tpye `str`.
 
 ## max_ascii_character
-`max_ascii_character` is an optional parameter present in and `encrypt()` and `decrypt()` that allows users to change the highest ASCII character that is used in message that being encrypted or decrypted.
+`max_ascii_character` is an optional parameter present in `encrypt()` and `decrypt()` that allows users to change the highest ASCII character that is used in message that being encrypted or decrypted.
 
 ## Example of the RSA class being used
 ```
